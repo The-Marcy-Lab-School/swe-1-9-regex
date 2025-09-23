@@ -1,37 +1,77 @@
 # Assignment 1.2.2 - RegEx
 
-- [Assignment 1.2.2 - RegEx](#assignment-122---regex)
-  - [Before You Start](#before-you-start)
-    - [Don't panic!](#dont-panic)
-    - [Resources](#resources)
-    - [Interpreters](#interpreters)
-- [Short Answers](#short-answers)
-- [Problems 1-9: `RegEx.test()`](#problems-1-9-regextest)
-  - [Question 1: HelloWorldRegex](#question-1-helloworldregex)
-  - [Question 2: hasAVowel](#question-2-hasavowel)
-  - [Question 3: hasCatsOrDogs](#question-3-hascatsordogs)
-  - [Question 4: hasVowelStart](#question-4-hasvowelstart)
-  - [Question 5: hasPunctuationEnd](#question-5-haspunctuationend)
-  - [Question 6: hasNothingOrDigits](#question-6-hasnothingordigits)
-  - [Question 7: hasNoFlippers](#question-7-hasnoflippers)
-  - [Question 8: isValidEmail](#question-8-isvalidemail)
-  - [Question 9: isValidPhoneNumber](#question-9-isvalidphonenumber)
-- [Problems 10-12: `str.match()`](#problems-10-12-strmatch)
-  - [Question 10: matchAllNumbers](#question-10-matchallnumbers)
-  - [Question 11: matchAllNumbersAsNumbers](#question-11-matchallnumbersasnumbers)
-  - [Question 12: matchAllWords](#question-12-matchallwords)
-- [Problems 13-16: `str.replace()`](#problems-13-16-strreplace)
-  - [Question 13: replaceAllNumbers](#question-13-replaceallnumbers)
-  - [question 14: fixFileName](#question-14-fixfilename)
-  - [Question 15: nameRedacter](#question-15-nameredacter)
-  - [Question 16: camelToSnakeCase](#question-16-cameltosnakecase)
-    - [Replacer callback](#replacer-callback)
-    - [Actual question to answer](#actual-question-to-answer)
-- [Debug](#debug)
-  - [Question 17: isValidCompanyUsername](#question-17-isvalidcompanyusername)
-- [Modify](#modify)
-  - [Question 18: swapAllCases](#question-18-swapallcases)
-- [Bonus](#bonus)
+- [Reminders](#reminders)
+  - [Asking ChatGPT for Help](#asking-chatgpt-for-help)
+  - [Be Okay With Being "Provisionally Complete"](#be-okay-with-being-provisionally-complete)
+- [Setup](#setup)
+- [Before You Start](#before-you-start)
+  - [Don't panic!](#dont-panic)
+  - [Resources](#resources)
+  - [Interpreters](#interpreters)
+- [Question 1: HelloWorldRegex](#question-1-helloworldregex)
+- [Question 2: hasAVowel](#question-2-hasavowel)
+- [Question 3: hasCatsOrDogs](#question-3-hascatsordogs)
+- [Question 4: hasVowelStart](#question-4-hasvowelstart)
+- [Question 5: hasPunctuationEnd](#question-5-haspunctuationend)
+- [Question 6: hasNothingOrDigits](#question-6-hasnothingordigits)
+- [Question 7: hasNoFlippers](#question-7-hasnoflippers)
+- [Question 8: isValidEmail](#question-8-isvalidemail)
+- [Question 9: isValidPhoneNumber](#question-9-isvalidphonenumber)
+- [Question 10: matchAllNumbers](#question-10-matchallnumbers)
+- [Question 11: matchAllNumbersAsNumbers](#question-11-matchallnumbersasnumbers)
+- [Question 12: matchAllWords](#question-12-matchallwords)
+- [Question 13: replaceAllNumbers](#question-13-replaceallnumbers)
+- [question 14: fixFileName](#question-14-fixfilename)
+- [Question 15: nameRedacter](#question-15-nameredacter)
+- [Question 16: camelToSnakeCase](#question-16-cameltosnakecase)
+  - [Replacer callback](#replacer-callback)
+  - [Actual question to answer](#actual-question-to-answer)
+- [Question 17: isValidCompanyUsername](#question-17-isvalidcompanyusername)
+- [Question 18: swapAllCases](#question-18-swapallcases)
+
+## Reminders
+
+### Asking ChatGPT for Help
+
+If you’re stuck, you may use ChatGPT to clarify the assignment — but not to solve it for you. To do this, copy the meta-prompt below into ChatGPT along with the assignment question.
+
+> You are acting as a tutor. Your job is to explain what this coding question is asking, clarify confusing wording, and highlight the relevant concepts students need to know — but do not provide the full solution or code that directly answers the question. Instead, focus on rephrasing the problem in simpler terms, identifying what’s being tested, and suggesting what steps or thought processes might help. Ask guiding questions to ensure the student is thinking critically. Do not write the final function, algorithm, or code implementation.
+
+Be mindful of your AI usage on assignments. AI can be a great tool to help your learning but it can also be detrimental if you let it do too much of the thinking for you.
+
+### Be Okay With Being "Provisionally Complete"
+
+At Marcy, we will deem an assignment as "complete" if the solution passes at least **75%** of the automated tests. 
+
+However, we know many of you will feel the urge to hold off on submitting until your assignment feels 100% perfect. That drive for excellence is an asset!
+
+But perfectionism can also get in the way of learning — especially when we need to cover a lot in a short amount of time.
+
+That’s why we encourage you to be comfortable with being **“provisionally complete.”** This means:
+
+- Submitting your work even if it isn’t perfect yet
+- Treating submission as a checkpoint, not a finish line
+- Committing to return, revise, and improve later
+
+Learning to move forward with provisional completeness will help you make steady progress while still building the habit of continuous improvement.
+
+## Setup
+
+For guidance on setting up and submitting this assignment, refer to the Marcy lab School Docs How-To guide for [Working with Short Response and Coding Assignments](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/working-with-assignments#how-to-work-on-assignments).
+
+Here are some useful commands to remember.
+
+```sh
+npm i                   # install dependencies
+git checkout -b draft   # switch to the draft branch before starting
+
+npm test # run the automated tests
+npm run test:w # run the automated tests and rerun them each time you save a change
+
+git add -A              # add a changed file to the staging area
+git commit -m 'message' # create a commit with the changes
+git push                # push the new commit to the remote repo
+```
 
 ## Before You Start
 
@@ -54,10 +94,6 @@ Don't freak out at the number of questions, they're all pretty short. Some don't
 
 - [scriptular - a simple RegEx tester](https://scriptular.com)
 - [Regexr.com - a more in depth RegEx tester](https://regexr.com)
-
-# Short Answers
-
-Be sure to complete them!
 
 # Problems 1-9: `RegEx.test()`
 
