@@ -1,4 +1,4 @@
-# Assignment 1.2.2 - RegEx
+# RegEx
 
 - [Reminders](#reminders)
   - [Asking ChatGPT for Help](#asking-chatgpt-for-help)
