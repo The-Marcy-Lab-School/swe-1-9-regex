@@ -1,5 +1,3 @@
-const path = require('path');
-const ScoreCounter = require('score-tests');
 const {
   helloWorldRegex,
   hasAVowel,
@@ -22,8 +20,6 @@ const {
 } = require('../src/from-scratch');
 
 const testSuiteName = 'From Scratch Tests';
-const scoresDir = path.join(__dirname, '..', 'scores');
-const scoreCounter = new ScoreCounter(testSuiteName, scoresDir);
 
 describe(testSuiteName, () => {
   it('helloWorldRegex - if the string contains "hello world" regardless of case it returns true', () => {
@@ -37,8 +33,6 @@ describe(testSuiteName, () => {
     expect(helloWorldRegex('Where in the world is Carmen?')).toBeFalsy();
     expect(helloWorldRegex('Hello')).toBeFalsy();
     expect(helloWorldRegex('')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('hasAVowel - if the string contains a vowel regardless of case it returns true', () => {
@@ -50,8 +44,6 @@ describe(testSuiteName, () => {
     expect(hasAVowel('')).toBeFalsy();
     expect(hasAVowel('xzy')).toBeFalsy();
     expect(hasAVowel('y')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('hasCatsOrDogs - if the string contains "cats" or "dogs" regardless of case it returns true', () => {
@@ -61,8 +53,6 @@ describe(testSuiteName, () => {
     expect(hasCatsOrDogs('I do not care for that dog.')).toBeFalsy();
     expect(hasCatsOrDogs('Cat? No way.')).toBeFalsy();
     expect(hasCatsOrDogs('Cat? No, but I have a ton of dogs.')).toBeTruthy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('hasVowelStart - if the string starts with a vowel regardless of case it returns true', () => {
@@ -83,8 +73,6 @@ describe(testSuiteName, () => {
     expect(hasVowelStart('Ba')).toBeFalsy();
     expect(hasVowelStart('qasda')).toBeFalsy();
     expect(hasVowelStart('')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('hasPunctuationEnd - if the string ends with a . or ? or ! it returns true', () => {
@@ -95,8 +83,6 @@ describe(testSuiteName, () => {
     expect(hasPunctuationEnd('a!a')).toBeFalsy();
     expect(hasPunctuationEnd('a?b')).toBeFalsy();
     expect(hasPunctuationEnd('')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('hasNothingOrDigits - if the string contains nothing or only digits it returns true', () => {
@@ -108,8 +94,6 @@ describe(testSuiteName, () => {
     expect(hasNothingOrDigits('abc')).toBeFalsy();
     expect(hasNothingOrDigits('123abc')).toBeFalsy();
     expect(hasNothingOrDigits('2348234681276384126834623493Q11964')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it("hasNoFlippers - if the string doesn't have: B, C, c, D, E, H, I, K, O, o, X, x, l, it returns true", () => {
@@ -122,8 +106,6 @@ describe(testSuiteName, () => {
     expect(hasNoFlippers('BC')).toBeFalsy();
     expect(hasNoFlippers('oao')).toBeFalsy();
     expect(hasNoFlippers('abdefo')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('isValidEmail - if the string is a valid email it returns true', () => {
@@ -136,8 +118,6 @@ describe(testSuiteName, () => {
     expect(isValidEmail('gonzalo@marcy')).toBeFalsy();
     expect(isValidEmail('ben@marcy.')).toBeFalsy();
     expect(isValidEmail('carms%@marcy.org')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('isValidPhoneNumber - if the string is a valid phone number it returns true', () => {
@@ -150,8 +130,6 @@ describe(testSuiteName, () => {
     expect(isValidPhoneNumber('860-227-78900')).toBeFalsy();
     expect(isValidPhoneNumber('8602277898')).toBeFalsy();
     expect(isValidPhoneNumber('ohmannotevenclosehere')).toBeFalsy();
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('matchAllNumbers - returns an array of all the numbers in the string as strings', () => {
@@ -162,8 +140,6 @@ describe(testSuiteName, () => {
 
     expect(matchAllNumbers('abc')).toEqual([]);
     expect(matchAllNumbers('')).toEqual([]);
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('matchAllNumbersAsNumbers - returns an array of all the numbers in the string as numbers', () => {
@@ -174,8 +150,6 @@ describe(testSuiteName, () => {
 
     expect(matchAllNumbersAsNumbers('abc')).toEqual([]);
     expect(matchAllNumbersAsNumbers('')).toEqual([]);
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('matchAllWords - returns an array of all the words in the string', () => {
@@ -190,8 +164,6 @@ describe(testSuiteName, () => {
       .toEqual(['wow', 'this', 'screen', 'name', 'is', 'long']);
     expect(matchAllWords('I have 3 dogs, 2 cats, and 10 bunnies.'))
       .toEqual(['I', 'have', 'dogs', 'cats', 'and', 'bunnies']);
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('replaceAllNumbers - replaces all the numbers in the string with "???"', () => {
@@ -206,8 +178,6 @@ describe(testSuiteName, () => {
     expect(replaceAllNumbers('')).toEqual('');
     expect(replaceAllNumbers('1')).toEqual('???');
     expect(replaceAllNumbers('100')).toEqual('???');
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('fixFileName - replaces all the whitespace in the string with underscores', () => {
@@ -221,8 +191,6 @@ describe(testSuiteName, () => {
     world`)).toEqual('hello_world');
     expect(fixFileName('first hw-trial spring')).toEqual('first_hw-trial_spring');
     expect(fixFileName('assignment-12')).toEqual('assignment-12');
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('nameRedacter - replaces all the words in the string that are 2 or more characters long and all uppercase with "REDACTED"', () => {
@@ -230,8 +198,6 @@ describe(testSuiteName, () => {
     expect(nameRedacter('A name is not something I have.')).toEqual('A name is not something I have.');
     expect(nameRedacter("Today is MAYA's first day, ZO will help her out."))
       .toEqual("Today is REDACTED's first day, REDACTED will help her out.");
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
 
   it('camelCaseToSnakeCase - converts a camelCase string to snake_case', () => {
@@ -241,10 +207,5 @@ describe(testSuiteName, () => {
     expect(camelToSnakeCase('do-not-touch-kebab-case')).toEqual('do-not-touch-kebab-case');
     expect(camelToSnakeCase('hello')).toEqual('hello');
     expect(camelToSnakeCase('')).toEqual('');
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
-  // IGNORE PLEASE
-  beforeEach(() => scoreCounter.add(expect));
-  afterAll(scoreCounter.export);
 });

@@ -1,10 +1,6 @@
-const path = require('path');
-const ScoreCounter = require('score-tests');
 const { swapAllCases } = require('../src/modify');
 
 const testSuiteName = 'Modify Tests';
-const scoresDir = path.join(__dirname, '..', 'scores');
-const scoreCounter = new ScoreCounter(testSuiteName, scoresDir);
 
 /*
 const swapAllCases = (str) => {
@@ -32,11 +28,5 @@ describe(testSuiteName, () => {
     const replaceCalls = textContent.match(/toLowerCase/gi);
     expect(replaceCalls).not.toBeNull();
     expect(replaceCalls.length).toBe(1);
-
-    scoreCounter.correct(expect); // DO NOT TOUCH
   });
-
-  // IGNORE PLEASE
-  beforeEach(() => scoreCounter.add(expect));
-  afterAll(scoreCounter.export);
 });
