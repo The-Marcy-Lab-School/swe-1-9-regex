@@ -1,0 +1,77 @@
+{
+  "testScores": {
+    "Debug Tests": {
+      "DeTe1": 1,
+      "DeTe2": 0
+    },
+    "From Scratch Tests": {
+      "FrScTe1": 0,
+      "FrScTe2": 0,
+      "FrScTe3": 0,
+      "FrScTe4": 0,
+      "FrScTe5": 0,
+      "FrScTe6": 0,
+      "FrScTe7": 0,
+      "FrScTe8": 0,
+      "FrScTe9": 0,
+      "FrScTe10": 0,
+      "FrScTe11": 0,
+      "FrScTe12": 0,
+      "FrScTe13": 0,
+      "FrScTe14": 0,
+      "FrScTe15": 0,
+      "FrScTe16": 0
+    },
+    "Modify Tests": {
+      "MoTe1": 0
+    }
+  },
+  "idToTestNameHash": {
+    "DeTe1": "Debug Tests is_valid_company_username - correctly checks if an employee has a valid username",
+    "DeTe2": "Debug Tests is_valid_company_username - treats a name as text, not as a pattern",
+    "FrScTe1": "From Scratch Tests hello_world_regex - True if the string contains \"hello world\" in any case",
+    "FrScTe2": "From Scratch Tests has_a_vowel - True if the string contains a vowel in any case",
+    "FrScTe3": "From Scratch Tests has_cats_or_dogs - True if the string contains \"cats\" or \"dogs\" in any case",
+    "FrScTe4": "From Scratch Tests has_vowel_start - True if the string starts with a vowel in any case",
+    "FrScTe5": "From Scratch Tests has_punctuation_end - True if the string ends with a . or ? or !",
+    "FrScTe6": "From Scratch Tests has_nothing_or_digits - True if the string is empty or only digits",
+    "FrScTe7": "From Scratch Tests has_no_flippers - True if the string has none of B C c D E H I K O o X x l",
+    "FrScTe8": "From Scratch Tests is_valid_email - True if the string is a valid email",
+    "FrScTe9": "From Scratch Tests is_valid_phone_number - True if the string is a valid phone number",
+    "FrScTe10": "From Scratch Tests match_all_numbers - returns a list of all the numbers as strings",
+    "FrScTe11": "From Scratch Tests match_all_numbers_as_numbers - returns a list of all the numbers as ints",
+    "FrScTe12": "From Scratch Tests match_all_words - returns a list of all the words in the string",
+    "FrScTe13": "From Scratch Tests replace_all_numbers - replaces all the numbers in the string with \"???\"",
+    "FrScTe14": "From Scratch Tests fix_file_name - replaces all the whitespace in the string with underscores",
+    "FrScTe15": "From Scratch Tests name_redacter - replaces ALL CAPS words of 2 or more characters with REDACTED",
+    "FrScTe16": "From Scratch Tests camel_to_snake_case - converts a camelCase string to snake_case",
+    "MoTe1": "Modify Tests swap_all_cases - swaps every letter's case using a regex, upper and lower once each"
+  },
+  "testNameToIdHash": {
+    "Debug Tests is_valid_company_username - correctly checks if an employee has a valid username": "DeTe1",
+    "Debug Tests is_valid_company_username - treats a name as text, not as a pattern": "DeTe2",
+    "From Scratch Tests hello_world_regex - True if the string contains \"hello world\" in any case": "FrScTe1",
+    "From Scratch Tests has_a_vowel - True if the string contains a vowel in any case": "FrScTe2",
+    "From Scratch Tests has_cats_or_dogs - True if the string contains \"cats\" or \"dogs\" in any case": "FrScTe3",
+    "From Scratch Tests has_vowel_start - True if the string starts with a vowel in any case": "FrScTe4",
+    "From Scratch Tests has_punctuation_end - True if the string ends with a . or ? or !": "FrScTe5",
+    "From Scratch Tests has_nothing_or_digits - True if the string is empty or only digits": "FrScTe6",
+    "From Scratch Tests has_no_flippers - True if the string has none of B C c D E H I K O o X x l": "FrScTe7",
+    "From Scratch Tests is_valid_email - True if the string is a valid email": "FrScTe8",
+    "From Scratch Tests is_valid_phone_number - True if the string is a valid phone number": "FrScTe9",
+    "From Scratch Tests match_all_numbers - returns a list of all the numbers as strings": "FrScTe10",
+    "From Scratch Tests match_all_numbers_as_numbers - returns a list of all the numbers as ints": "FrScTe11",
+    "From Scratch Tests match_all_words - returns a list of all the words in the string": "FrScTe12",
+    "From Scratch Tests replace_all_numbers - replaces all the numbers in the string with \"???\"": "FrScTe13",
+    "From Scratch Tests fix_file_name - replaces all the whitespace in the string with underscores": "FrScTe14",
+    "From Scratch Tests name_redacter - replaces ALL CAPS words of 2 or more characters with REDACTED": "FrScTe15",
+    "From Scratch Tests camel_to_snake_case - converts a camelCase string to snake_case": "FrScTe16",
+    "Modify Tests swap_all_cases - swaps every letter's case using a regex, upper and lower once each": "MoTe1"
+  },
+  "humanReadable": {
+    "Debug Tests": "1/2",
+    "From Scratch Tests": "0/16",
+    "Modify Tests": "0/1",
+    "finalTestScore": "FINAL SCORE: 1/19"
+  }
+}

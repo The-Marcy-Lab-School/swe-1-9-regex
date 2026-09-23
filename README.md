@@ -1,355 +1,370 @@
-# RegEx
+# Regular Expressions
 
-- [Reminders](#reminders)
-  - [Asking ChatGPT for Help](#asking-chatgpt-for-help)
-  - [Be Okay With Being "Provisionally Complete"](#be-okay-with-being-provisionally-complete)
+Practice describing patterns in text, then searching, extracting and replacing
+with them.
+
+**Practicing:** regex, the `re` module, raw strings
+
+- [AI Use on This Assignment](#ai-use-on-this-assignment)
 - [Setup](#setup)
 - [Before You Start](#before-you-start)
-  - [Don't panic!](#dont-panic)
-  - [Resources](#resources)
-  - [Interpreters](#interpreters)
-- [Question 1: HelloWorldRegex](#question-1-helloworldregex)
-- [Question 2: hasAVowel](#question-2-hasavowel)
-- [Question 3: hasCatsOrDogs](#question-3-hascatsordogs)
-- [Question 4: hasVowelStart](#question-4-hasvowelstart)
-- [Question 5: hasPunctuationEnd](#question-5-haspunctuationend)
-- [Question 6: hasNothingOrDigits](#question-6-hasnothingordigits)
-- [Question 7: hasNoFlippers](#question-7-hasnoflippers)
-- [Question 8: isValidEmail](#question-8-isvalidemail)
-- [Question 9: isValidPhoneNumber](#question-9-isvalidphonenumber)
-- [Question 10: matchAllNumbers](#question-10-matchallnumbers)
-- [Question 11: matchAllNumbersAsNumbers](#question-11-matchallnumbersasnumbers)
-- [Question 12: matchAllWords](#question-12-matchallwords)
-- [Question 13: replaceAllNumbers](#question-13-replaceallnumbers)
-- [question 14: fixFileName](#question-14-fixfilename)
-- [Question 15: nameRedacter](#question-15-nameredacter)
-- [Question 16: camelToSnakeCase](#question-16-cameltosnakecase)
-  - [Replacer callback](#replacer-callback)
-  - [Actual question to answer](#actual-question-to-answer)
-- [Question 17: isValidCompanyUsername](#question-17-isvalidcompanyusername)
-- [Question 18: swapAllCases](#question-18-swapallcases)
+- [From Scratch](#from-scratch)
+  - [Question 1: `hello_world_regex`](#question-1-hello_world_regex)
+  - [Question 2: `has_a_vowel`](#question-2-has_a_vowel)
+  - [Question 3: `has_cats_or_dogs`](#question-3-has_cats_or_dogs)
+  - [Question 4: `has_vowel_start`](#question-4-has_vowel_start)
+  - [Question 5: `has_punctuation_end`](#question-5-has_punctuation_end)
+  - [Question 6: `has_nothing_or_digits`](#question-6-has_nothing_or_digits)
+  - [Question 7: `has_no_flippers`](#question-7-has_no_flippers)
+  - [Question 8: `is_valid_email`](#question-8-is_valid_email)
+  - [Question 9: `is_valid_phone_number`](#question-9-is_valid_phone_number)
+  - [Question 10: `match_all_numbers`](#question-10-match_all_numbers)
+  - [Question 11: `match_all_numbers_as_numbers`](#question-11-match_all_numbers_as_numbers)
+  - [Question 12: `match_all_words`](#question-12-match_all_words)
+  - [Question 13: `replace_all_numbers`](#question-13-replace_all_numbers)
+  - [Question 14: `fix_file_name`](#question-14-fix_file_name)
+  - [Question 15: `name_redacter`](#question-15-name_redacter)
+  - [Question 16: `camel_to_snake_case`](#question-16-camel_to_snake_case)
+- [Modify](#modify)
+  - [Question 17: `swap_all_cases`](#question-17-swap_all_cases)
+- [Debug](#debug)
+  - [Question 18: `is_valid_company_username`](#question-18-is_valid_company_username)
+- [Resources](#resources)
+- [Submitting](#submitting)
+- [Good luck!](#good-luck)
 
-## Reminders
+## AI Use on This Assignment
 
-### Asking ChatGPT for Help
+Use whichever mode matches where you are with this material. Both are fine,
+and most people move between them as a concept clicks.
 
-If you’re stuck, you may use ChatGPT to clarify the assignment — but not to solve it for you. To do this, copy the meta-prompt below into ChatGPT along with the assignment question.
+**Tutor mode.** The AI explains, questions, quizzes, and critiques, and you
+write every line you submit. For this assignment that means asking it what a
+character class does, or having it read a pattern back to you in plain
+English. Ask it a hundred questions — that is the whole point. What you do
+not do is ask it for the pattern. Paste this at the start of a chat and it
+will hold for the rest of the conversation:
 
-> You are acting as a tutor. Your job is to explain what this coding question is asking, clarify confusing wording, and highlight the relevant concepts students need to know — but do not provide the full solution or code that directly answers the question. Instead, focus on rephrasing the problem in simpler terms, identifying what’s being tested, and suggesting what steps or thought processes might help. Ask guiding questions to ensure the student is thinking critically. Do not write the final function, algorithm, or code implementation.
+> You are acting as a tutor. Your job is to explain what this coding question
+> is asking, clarify confusing wording, and highlight the relevant concepts I
+> need to know — but do not provide the full solution or code that directly
+> answers the question. Instead, rephrase the problem in simpler terms,
+> identify what is being tested, and suggest what steps or thought processes
+> might help. Ask me guiding questions to make sure I am thinking critically.
+> Do not write the final function, algorithm, or code implementation.
 
-Be mindful of your AI usage on assignments. AI can be a great tool to help your learning but it can also be detrimental if you let it do too much of the thinking for you.
+**Implementer mode.** You write a specification first, the AI writes code from
+it, and then you verify that code line by line. For this assignment your spec
+must list the strings that should match and the ones that should not. Regex is
+where generated code looks right and is subtly wrong, so test every case
+yourself. If what comes back does more than you asked for, reject it.
 
-### Be Okay With Being "Provisionally Complete"
-
-At Marcy, we will deem an assignment as "complete" if the solution passes at least **75%** of the automated tests. 
-
-However, we know many of you will feel the urge to hold off on submitting until your assignment feels 100% perfect. That drive for excellence is an asset!
-
-But perfectionism can also get in the way of learning — especially when we need to cover a lot in a short amount of time.
-
-That’s why we encourage you to be comfortable with being **“provisionally complete.”** This means:
-
-- Submitting your work even if it isn’t perfect yet
-- Treating submission as a checkpoint, not a finish line
-- Committing to return, revise, and improve later
-
-Learning to move forward with provisional completeness will help you make steady progress while still building the habit of continuous improvement.
+You own every line either way, and you will be asked to explain it.
 
 ## Setup
 
-For guidance on setting up and submitting this assignment, refer to the Marcy lab School Docs How-To guide for [Working with Short Response and Coding Assignments](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/working-with-assignments#how-to-work-on-assignments).
-
-Here are some useful commands to remember.
+Work in `development/mod-1`. Make a draft branch before you start.
 
 ```sh
-npm i                   # install dependencies
-git checkout -b draft   # switch to the draft branch before starting
-
-npm test # run the automated tests
-npm run test:w # run the automated tests and rerun them each time you save a change
-
-git add -A              # add a changed file to the staging area
-git commit -m 'message' # create a commit with the changes
-git push                # push the new commit to the remote repo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+git checkout -b draft
 ```
+
+Run `pytest` for everything, or `pytest -k has_a_vowel` for one question.
+Scores land in `scores/scores.json`.
+
+75% of tests passing counts as complete. Submit at that point even if it is
+not perfect. Treat submitting as a checkpoint rather than a finish line, and
+come back to improve it.
 
 ## Before You Start
 
-Welcome to RegEx! It's a cool tool that you can use to make string processing a breeze. Now, it's true that the syntax isn't exactly _friendly_, however it's totally understandable with practice. Be patient with yourself, move slowly, use external resources, and you got this!
+Python keeps regex in the [`re` module](https://www.w3schools.com/python/python_regex.asp).
+Patterns are plain strings you pass to a function, rather than their own
+piece of language syntax.
 
-### Don't panic!
+```python
+import re
 
-Don't freak out at the number of questions, they're all pretty short. Some don't even take 50 characters to type out, every `from-scratch.js` function can be done in 1 line. RegEx is _super_ powerful,
+re.search(r"cat", "concatenate")    # a match object, or None
+re.fullmatch(r"\d+", "123")         # must match the WHOLE string
+re.findall(r"\d+", "1 and 22")      # ['1', '22']
+re.sub(r"\d+", "#", "1 and 22")     # '# and ##'
+```
 
-### Resources
+**Always write patterns as raw strings**, with an `r` in front. Without it,
+Python reads the backslashes first and your pattern is not what you typed:
+`"\b"` is a backspace character, not a word boundary. Get in the habit now
+and it will never bite you.
 
-- [Marcy Cheat Sheet](https://github.com/The-Marcy-Lab-School/1-2-2-cheat-sheet_regex)
+The `search` functions return a **match object** rather than `True` or `False`.
+A match object is truthy and `None` is falsy, so wrap it in `bool()` when a
+question asks for a boolean.
+
+[Regex101](https://regex101.com/) lets you build a pattern and see what it
+matches as you type. Set the flavor to Python. It is the single most useful
+thing you can have open for this assignment.
+
+## From Scratch
+
+Write your solutions in `src/from_scratch.py`. The first nine return `True` or
+`False`.
+
+### Question 1: `hello_world_regex`
+
+Write a function `hello_world_regex` that returns `True` if the string
+contains "hello world" anywhere, in any mix of cases.
+
+```python
+hello_world_regex("HeLlO wOrLd!")   # True
+hello_world_regex("Hello")          # False
+```
+
+Look up how to pass a flag to make a search case insensitive, rather than
+listing every combination. There are 2048 of them.
+
+### Question 2: `has_a_vowel`
+
+Write a function `has_a_vowel` that returns `True` if the string contains a
+vowel, in any case. `y` does not count.
+
+### Question 3: `has_cats_or_dogs`
+
+Write a function `has_cats_or_dogs` that returns `True` if the string contains
+"cats" or "dogs", in any case. The singular forms do not count.
+
+```python
+has_cats_or_dogs("Cats rule!")              # True
+has_cats_or_dogs("I do not care for that dog.")   # False
+```
+
+### Question 4: `has_vowel_start`
+
+Write a function `has_vowel_start` that returns `True` if the string *starts*
+with a vowel, in any case.
+
+### Question 5: `has_punctuation_end`
+
+Write a function `has_punctuation_end` that returns `True` if the string
+*ends* with a `.`, `?` or `!`.
+
+```python
+has_punctuation_end("a!")    # True
+has_punctuation_end("a!a")   # False
+```
+
+Inside a character class, a `.` is just a dot. Outside one it means "any
+character". Food for thought.
+
+### Question 6: `has_nothing_or_digits`
+
+Write a function `has_nothing_or_digits` that returns `True` if the string is
+empty or made up entirely of digits.
+
+```python
+has_nothing_or_digits("")        # True
+has_nothing_or_digits("123")     # True
+has_nothing_or_digits("123abc")  # False
+```
+
+"Entirely" is the hard part. A search that finds digits *somewhere* will
+happily accept `123abc`.
+
+### Question 7: `has_no_flippers`
+
+Write a function `has_no_flippers` that returns `True` if the string contains
+none of these characters: `B C c D E H I K O o X x l`.
+
+Note this list is case sensitive, and only some letters appear in both cases.
+
+### Question 8: `is_valid_email`
+
+Write a function `is_valid_email` that returns `True` if the string is a valid
+email address.
+
+```python
+is_valid_email("maya.b@marcy.org")    # True
+is_valid_email("gonzalo@marcy")       # False, no domain ending
+is_valid_email("ben@marcy.")          # False, empty domain ending
+is_valid_email("carms%@marcy.org")    # False, % is not allowed
+```
+
+Read the tests for exactly which forms count. Real email validation is
+famously horrible, so match the tests rather than the whole specification.
+
+### Question 9: `is_valid_phone_number`
+
+Write a function `is_valid_phone_number` that returns `True` for a US phone
+number written any of these ways:
+
+```python
+is_valid_phone_number("860-227-7890")     # True
+is_valid_phone_number("(860) 410-7890")   # True
+is_valid_phone_number("860 892 8010")     # True
+is_valid_phone_number("860.888.4872")     # True
+is_valid_phone_number("8602277898")       # False, no separators
+```
+
+This one is a stumper. Build it a piece at a time in Regex101, and remember
+that a `(` means something in a pattern, so a literal one needs escaping.
+
+### Question 10: `match_all_numbers`
+
+Write a function `match_all_numbers` that returns a list of every number in
+the string, as **strings**.
+
+```python
+match_all_numbers("I have 1 dog and 22 cats.")   # ['1', '22']
+match_all_numbers("abc")                          # []
+```
+
+Note `22` comes back whole, not as `2` and `2`.
+
+### Question 11: `match_all_numbers_as_numbers`
+
+Write a function `match_all_numbers_as_numbers` that does the same thing, but
+returns **integers**.
+
+```python
+match_all_numbers_as_numbers("I have 1 dog and 22 cats.")   # [1, 22]
+```
+
+### Question 12: `match_all_words`
+
+Write a function `match_all_words` that returns a list of every word in the
+string. Digits are not words, and an apostrophe stays inside a word.
+
+```python
+match_all_words("I don't think I'm going, but you can!")
+# ['I', "don't", 'think', "I'm", 'going', 'but', 'you', 'can']
+
+match_all_words("wow_this_screen_name_is_long")
+# ['wow', 'this', 'screen', 'name', 'is', 'long']
+```
+
+Careful: `\w` includes digits and underscores, and both tests above say it
+should not. You may want to spell out the letters you mean.
+
+### Question 13: `replace_all_numbers`
+
+Write a function `replace_all_numbers` that replaces every number with `"???"`.
+
+```python
+replace_all_numbers("There were 40 fire drills, and 0 fires")
+# 'There were ??? fire drills, and ??? fires'
+```
+
+`100` becomes one `???`, not three.
+
+### Question 14: `fix_file_name`
+
+Write a function `fix_file_name` that replaces every run of whitespace with a
+single underscore.
+
+```python
+fix_file_name("hello   world")            # 'hello_world'
+fix_file_name("first hw-trial spring")    # 'first_hw-trial_spring'
+```
+
+Tabs and newlines are whitespace too, and a run of them becomes one
+underscore.
+
+### Question 15: `name_redacter`
+
+Write a function `name_redacter` that replaces every ALL CAPS word of two or
+more characters with `"REDACTED"`.
+
+```python
+name_redacter("Today is MAYA's first day, ZO will help her out.")
+# "Today is REDACTED's first day, REDACTED will help her out."
+```
+
+Note the `'s` survives. A single capital `A` is left alone.
+
+### Question 16: `camel_to_snake_case`
+
+Write a function `camel_to_snake_case` that converts a camelCase string to
+snake_case.
+
+```python
+camel_to_snake_case("helloWorldHowAreYou")     # 'hello_world_how_are_you'
+camel_to_snake_case("do-not-touch-kebab-case") # unchanged
+```
+
+You need the matched capital in your replacement, not a fixed string. Look up
+how to refer to what you matched inside `re.sub`. This is a cool trick to
+know, I can't wait till you learn it too!
+
+## Modify
+
+### Question 17: `swap_all_cases`
+
+Rewrite `swap_all_cases` in `src/modify.py` so it uses `re.sub` instead of
+looping over every character by hand. It should swap the case of every letter
+and leave everything else alone.
+
+```python
+swap_all_cases("SpONGeBoB TeXT")   # 'sPongEbOb tExt'
+```
+
+`re.sub` accepts a **function** in place of the replacement string, and calls
+it with each match. The tests check you used `.upper()` and `.lower()` once
+each.
+
+Python does have `str.swapcase()`, which would do the whole thing in one call.
+The tests forbid it, because then you would not have written a regex. Sorry.
+
+## Debug
+
+### Question 18: `is_valid_company_username`
+
+Oh man. `is_valid_company_username` in `src/debug.py` checks a username
+against a pattern built from the employee's own name. It works, right up
+until it meets a surname with a `.` in it.
+
+Rosa **St.John** validates fine. So does a completely different person, whose
+username is `sales9b-aStXJohn`. The `.` from her surname went straight into
+the pattern, where it means "any character". Her name became part of the
+pattern instead of text to look for.
+
+Fix it so that a name is treated as literal text. Look up
+[`re.escape`](https://www.w3schools.com/python/ref_module_re.asp), and think
+about which other characters in a real surname would cause the same problem.
+
+This one matters beyond the assignment. Building a pattern out of a value
+somebody else controls, without escaping it, is a real bug with a real name.
+It is how validation quietly lets the wrong thing through.
+
+## Resources
+
 - [Learn Regular Expressions in 20 Minutes](https://www.youtube.com/watch?v=rhzKDrUiJVk)
-- [regular-expressions.info](https://www.regular-expressions.info)
+  — a good place to start if patterns still look like line noise
+- [regular-expressions.info](https://www.regular-expressions.info) — the
+  reference for what every symbol does, in any language
 - [Launch School RegEx Mini Course](https://launchschool.com/books/regex/read/introduction)
-- [Chapter 9: Regular Expressions - Eloquent JS](https://eloquentjavascript.net/09_regexp.html)
-- [MDN RegEx Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions)
+  — short, and language neutral
+- [W3Schools Python RegEx](https://www.w3schools.com/python/python_regex.asp)
+  — the `re` functions and flags, with examples
+- [Real Python: Regular Expressions](https://realpython.com/regex-python/) —
+  longer, and Python specific
+- [Regex101](https://regex101.com/) — build a pattern and watch what it
+  matches. Set the flavor to Python
+- [Regexr](https://regexr.com) — another tester, with a cheat sheet down the
+  side
 
-### Interpreters
+## Submitting
 
-- [scriptular - a simple RegEx tester](https://scriptular.com)
-- [Regexr.com - a more in depth RegEx tester](https://regexr.com)
-
-# Problems 1-9: `RegEx.test()`
-
-For the first few questions, we'll use regex literals and the .test method. Always check the tests to make sure that you returning the right results! Also, all these methods will be in the `from-scratch.js` file.
-
-## Question 1: HelloWorldRegex
-
-`helloWorldRegex` takes in a string and returns true if the string passed in contains "Hello world" _regardless of case_, and false otherwise. It can have more than that, but must have at least those two words.
-
-```js
-helloWorldRegex("Hello world"); // true
-helloWorldRegex("Hello world?"); // true
-helloWorldRegex("Hello world, are you there?"); // true
-helloWorldRegex("hello world"); // true
-helloWorldRegex("HELLO WORLD!"); // true
-helloWorldRegex("HeLlO wOrLd!"); // true
-helloWorldRegex("Sup world!"); // false
-helloWorldRegex("Where in the world is Carmen?"); // false
-helloWorldRegex("Hello"); // false
+```sh
+git add -A
+git commit -m "your message"
+git push
 ```
 
-## Question 2: hasAVowel
+Open a pull request to your instructor for feedback.
 
-`hasAVowel` takes in a string and should return true if the given string has at least 1 vowel present, and false otherwise. The case does not matter.
+## Good luck!
 
-```js
-hasAVowel("a"); // true
-hasAVowel("AHHHHHH!"); // true
-hasAVowel("HEY"); // true
-hasAVowel("wow"); // true
-hasAVowel(""); // false
-hasAVowel("xzy"); // false
-hasAVowel("y"); // false
-```
-
-## Question 3: hasCatsOrDogs
-
-`hasCatsOrDogs` takes in a string and should return true if the string has either "cats" or "dogs", and false otherwise. The case doesn't matter, but the each pet should be plural.
-
-```js
-hasCatsOrDogs("Gosh, I love having so many cats!"); // true
-hasCatsOrDogs("Wow, I have a lot of dogs!"); // true
-hasCatsOrDogs("Cats rule!"); // true
-hasCatsOrDogs("I do not care for that dog."); // false
-hasCatsOrDogs("Cat? No way."); // false
-hasCatsOrDogs("Cat? No, but I have a ton of dogs."); // true
-```
-
-## Question 4: hasVowelStart
-
-`hasVowelStart` takes in a string and should return true if the string starts with a vowel, and false otherwise. The case doesn't matter.
-
-```js
-hasVowelStart("a"); // true
-hasVowelStart("A"); // true
-hasVowelStart("ab"); // true
-hasVowelStart("Ab"); // true
-hasVowelStart("ba"); // false
-hasVowelStart("Ba"); // false
-hasVowelStart(""); // false
-```
-
-## Question 5: hasPunctuationEnd
-
-`hasPunctuationEnd` takes in a string and should return true if the string ends with a period, exclamation or question mark, and false otherwise.
-
-```js
-hasPunctuationEnd("a."); // true
-hasPunctuationEnd("a!"); // true
-hasPunctuationEnd("a?"); // true
-hasPunctuationEnd("a"); // false
-hasPunctuationEnd("a!a"); // false
-hasPunctuationEnd("a?b"); // false
-hasPunctuationEnd(""); // false
-```
-
-## Question 6: hasNothingOrDigits
-
-`hasNothingOrDigits` takes in a string and should return true if the string is either empty or only contains digits, and false otherwise.
-
-```js
-hasNothingOrDigits(""); // true
-hasNothingOrDigits("123"); // true
-hasNothingOrDigits("abc"); // false
-hasNothingOrDigits("123abc"); // false
-hasNothingOrDigits("abc123"); // false
-```
-
-hint: When checking the _entire_ string, it's useful to add starting and ending anchors...
-
-## Question 7: hasNoFlippers
-
-`hasNoFlippers` takes in a string and should return true if the string _has NO "flippable" letters_, and false otherwise. A "flippable" letter is one that could be flipped upside down but look identical, so `B, C, c, D, E, H, I, K, O, o, X, x, l`. Only these _exact_ letters.
-
-```js
-hasNoFlippers("Z"); // true
-hasNoFlippers("Zabdabbq"); // true
-hasNoFlippers(""); // true
-hasNoFlippers("abd"); // true
-hasNoFlippers("B"); // false
-hasNoFlippers("BC"); // false
-hasNoFlippers("oao"); // false
-hasNoFlippers("abdefo"); // false
-```
-
-## Question 8: isValidEmail
-
-This question and the phone one are _probably_ the most likely thing you'll turn to regex for: tricky validation. And the way you do that is usually Googling around until you get something right. So, Google "regex email validation" and see what you get. Try to make sense of it, and then try to implement it. If you're having trouble, try to break it down into smaller pieces. What does it mean to be a valid email? What are the rules? How can you check for those rules?
-
-As always, fall back to the tests, and if whatever you have works for those, then you're good enough for now!
-
-## Question 9: isValidPhoneNumber
-
-Same as above, but for phone numbers. Again, Google it and see if you can make sense of what's suggested to you.
-
----
-
-# Problems 10-12: `str.match()`
-
-Alright for these next few questions, we're going to be focusing on the new `.match` string method. Check out the docs if you're unfamiliar with the method. All questions will still be in the `from-scratch.js` file. Remember, with matches, we _usually_ want all of the matches, not just the first, **what RegEx flag lets us do that?**
-
-[.match() docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
-
-## Question 10: matchAllNumbers
-
-`matchAllNumbers` takes in a string and should return an array of all the numbers in the string (as strings). If there are no numbers, it should return an empty array.
-
-```js
-matchAllNumbers("My favorite number is 12."); // ['12']
-matchAllNumbers("I have no favorite number."); // []
-matchAllNumbers("There were 40 fire drills last year, and luckily 0 fires"); // ['40', '0']
-matchAllNumbers("I have 1 dog, 2 cats, and 4 bunnies. Oh wait, 8 bunnies."); // ['1', '2', '4', '8']
-```
-
-hint: What does match return if it finds no matches? What do we _want_ it to return? RegEx can't do _everything_ for us, don't forget your other JS tricks!
-
-## Question 11: matchAllNumbersAsNumbers
-
-You just learned about some higher order functions that work on arrays, right? Well the above method will return an array of numbers as _strings_. That's almost certainly not what you want. So, let's make a new method that does the same thing, but returns an array of numbers as _numbers_. Which higher order method can we use to do that?
-
-```js
-matchAllNumbers("My favorite number is 12."); // [12]
-matchAllNumbers("I have no favorite number."); // []
-matchAllNumbers("There were 40 fire drills last year, and luckily 0 fires"); // [40, 0]
-matchAllNumbers("I have 1 dog, 2 cats, and 4 bunnies. Oh wait, 8 bunnies."); // [1, 2, 4, 8]
-```
-
-## Question 12: matchAllWords
-
-`matchAllWords` takes in a string and should return an array of all the words in the string (as strings). If there are no words, it should return an empty array. Words should only have letters and `'` in them, nothing else! Do not include punctuation.
-
-```js
-matchAllWords("Hello world!"); // ['Hello', 'world']
-matchAllWords("It looks like...rain today?"); // ['It', 'looks', 'like', 'rain', 'today']
-matchAllWords(""); // []
-matchAllWords("I don't think I'm going, but you can!"); // ["I", "don't", "think", "I'm", "going", "but", "you", "can"]
-matchAllWords("wow_this_screen_name_is_long"); // ['wow', 'this', 'screen', 'name', 'is', 'long']
-matchAllWords("I have 3 dogs, 2 cats, and 10 bunnies."); // ['I', 'have', 'dogs', 'cats', 'and', 'bunnies']
-matchAllWords("123"); // []
-```
-
-This question is a little open ended right? So just check the tests specifically for what they test for. If you pass them all, you get the question right!
-
----
-
-# Problems 13-16: `str.replace()`
-
-And lastly, let's work on replace. You've actually already used this method with strings, but RegEx makes it _even_ more powerful. It lets us get real specific
-
-[.replace docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
-
-## Question 13: replaceAllNumbers
-
-`replaceAllNumbers` takes in a string and should return a string with all the numbers replaced with "???". If there are no numbers, it should return the original string.
-
-```js
-replaceAllNumbers("My favorite number is 12."); // 'My favorite number is ???.'
-replaceAllNumbers("I have no favorite number."); // 'I have no favorite number.'
-replaceAllNumbers("There were 40 fire drills last year, and luckily 0 fires"); // 'There were ??? fire drills last year, and luckily ??? fires'
-```
-
-## question 14: fixFileName
-
-`fixFileName` takes in a string and should return a string with all spaces replaced with underscores. No matter how big the whitespace is, it should be replaced with a single underscore. If there are no spaces, it should return the original string.
-
-```js
-fixFileName("hello world"); // 'hello_world'
-fixFileName("hello   world"); // 'hello_world'
-fixFileName("first hw-trial spring"); // 'first_hw-trial_spring'
-fixFileName(""); // ''
-fixFileName("assignment-12"); // 'assignment-12'
-```
-
-## Question 15: nameRedacter
-
-`nameRedacter` takes in a string and should return a string with all the names replaced with "REDACTED". A name is a word that is in ALL capitals (but not "I" or "A"). If there are no names, it should return the original string. It should _only_ redact the name, and nothing else.
-
-```js
-nameRedacter("My name is ITZEL."); // 'My name is REDACTED.'
-nameRedacter("I have no name."); // 'I have no name.'
-
-nameRedacter("Today is MAYA's first day, ZO will help her out."); // "Today is REDACTED's first day, REDACTED will help her out."
-```
-
-## Question 16: camelToSnakeCase
-
-### Replacer callback
-
-Did you know that replace doesn't have to take a string as the second argument? It can also take a function! This function will be called for every match, and the return value will be used as the replacement. This is a bit more advanced, but it's a great way to do some more complex string manipulation. Check out the docs for more info.
-
-[.replace docs that talk about the function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#using_an_inline_function_that_modifies_the_matched_characters) (Seriously...check out the docs on this).
-
-### Actual question to answer
-
-Anyway, using that replacer function, fill in `camelToSnakeCase`. It takes in a camelCase string and should return a snake_case_string. Meaning, replace all the capital letters with an underscore and lowercase letter. If there are no capital letters, it should return the original string.
-
-```js
-camelToSnakeCase("helloWorld"); // 'hello_world'
-camelToSnakeCase("helloWorldHowAreYou"); // 'hello_world_how_are_you'
-camelToSnakeCase("hello_world"); // 'hello_world'
-camelToSnakeCase("hello"); // 'hello'
-camelToSnakeCase(""); // ''
-```
-
----
-
-# Debug
-
-Ok, from here on out, we can use any RegEx technique and function. And we'll need to use our knowledge to fix the functions written in `debug.js`. To make sure that you're doing things right, check the tests!
-
-## Question 17: isValidCompanyUsername
-
-So it looks like we're using a dynamic regex here and we're building it out with `new RegExp` but we're hitting an issue. See, a normal string will see a `\` as a special escape character and won't print it right. But we need them for our regex! How can we get around this? We need to escape them with another `\`. It looks weird but it'll work! Try it out!
-
----
-
-# Modify
-
-Oh dear, it looks like the functions written in `modify.js` are written without RegEx. Let's fix that! The tests need to pass, make sure to keep checking them.
-
-## Question 18: swapAllCases
-
-It looks like this function is trying to swap the cases of all the letters in a string. But it's doing it _so_ clunky. Checking the case of the letter by comparing if it's the same as the uppercase version of itself? More importantly, we don't need a loop and new string if we just use replace _properly_. Remember the callback function from above? You'll need it!
-
-The test is going to check to see that you only use `toUpperCase` and `toLowerCase` only once _each_ for the entire function. If you use it more than that, you're not using RegEx efficiently!
-
-To be clear, make sure you delete the existing code, if you comment it out, the commented methods will get picked up and you'll fail the test (also no using the `match === match.uppercase()` trick, we have regex now)!
-
----
-
-# Bonus
-
-After you have answered all the questions and done your short answers, there are some topics in RegEx that you should explore:
-
-- .exec
-- Capture Groups
-- Look ahead/behind assertions
-
-These are more advanced methods and concepts, but if you're feeling good about RegEx, check them out!
+Regex looks like line noise until one day it does not. Keep Regex101 open,
+build patterns a piece at a time, and you got this!
