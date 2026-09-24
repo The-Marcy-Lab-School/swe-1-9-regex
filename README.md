@@ -122,8 +122,9 @@ hello_world_regex("HeLlO wOrLd!")   # True
 hello_world_regex("Hello")          # False
 ```
 
-Look up how to pass a flag to make a search case insensitive, rather than
-listing every combination. There are 2048 of them.
+Listing every combination of upper and lower case would mean 2048 patterns.
+Ask your AI tutor in **tutor mode** how `re` can be told to ignore case. Make
+it explain the idea rather than hand you the pattern.
 
 ### Question 2: `has_a_vowel`
 
@@ -293,9 +294,10 @@ camel_to_snake_case("helloWorldHowAreYou")     # 'hello_world_how_are_you'
 camel_to_snake_case("do-not-touch-kebab-case") # unchanged
 ```
 
-You need the matched capital in your replacement, not a fixed string. Look up
-how to refer to what you matched inside `re.sub`. This is a cool trick to
-know, I can't wait till you learn it too!
+You need the matched capital in your replacement, not a fixed string. Ask your
+AI tutor in **tutor mode** how to refer back to what you matched inside
+`re.sub`. Make it explain the idea rather than hand you the replacement. This
+is a cool trick to know, I can't wait till you learn it too!
 
 ## Modify
 
