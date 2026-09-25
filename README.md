@@ -131,6 +131,16 @@ it explain the idea rather than hand you the pattern.
 Write a function `has_a_vowel` that returns `True` if the string contains a
 vowel, in any case. `y` does not count.
 
+```python
+has_a_vowel("a")         # True
+has_a_vowel("AHHHHHH!")  # True
+has_a_vowel("HEY")       # True
+has_a_vowel("wow")       # True
+has_a_vowel("")          # False
+has_a_vowel("xzy")       # False
+has_a_vowel("y")         # False
+```
+
 ### Question 3: `has_cats_or_dogs`
 
 Write a function `has_cats_or_dogs` that returns `True` if the string contains
@@ -145,6 +155,16 @@ has_cats_or_dogs("I do not care for that dog.")   # False
 
 Write a function `has_vowel_start` that returns `True` if the string *starts*
 with a vowel, in any case.
+
+```python
+has_vowel_start("a")    # True
+has_vowel_start("A")    # True
+has_vowel_start("ab")   # True
+has_vowel_start("Ab")   # True
+has_vowel_start("ba")   # False
+has_vowel_start("Ba")   # False
+has_vowel_start("")     # False
+```
 
 ### Question 5: `has_punctuation_end`
 
@@ -179,6 +199,17 @@ Write a function `has_no_flippers` that returns `True` if the string contains
 none of these characters: `B C c D E H I K O o X x l`.
 
 Note this list is case sensitive, and only some letters appear in both cases.
+
+```python
+has_no_flippers("Z")         # True
+has_no_flippers("Zabdabbq")  # True
+has_no_flippers("")          # True
+has_no_flippers("abd")       # True
+has_no_flippers("B")         # False
+has_no_flippers("BC")        # False
+has_no_flippers("oao")       # False
+has_no_flippers("abdefo")    # False
+```
 
 ### Question 8: `is_valid_email`
 
